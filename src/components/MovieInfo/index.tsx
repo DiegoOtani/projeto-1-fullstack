@@ -4,7 +4,7 @@ import { MovieInfoStyled } from "./styles";
 
 const MovieInfo = ({ rating, duration }: MovieInfoTypes) => {
   return <MovieInfoStyled>
-    <span>
+    <span className="rating">
       <Star />
       {rating}
     </span>

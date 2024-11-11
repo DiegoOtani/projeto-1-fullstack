@@ -8,6 +8,13 @@ export const MovieInfoStyled = styled.div`
   & span {
     display: flex;
     gap: 2px;
-    padding: 4px;
+    padding: 6px;
+  }
+
+  .rating {
+    background-color: #FC5056;
+    border-radius: 20%;
+    color: white;
+    font-weight: 700;
   }
 `;
