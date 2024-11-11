@@ -3,11 +3,17 @@ import Card from "../../components/Card";
 import { useEffect, useState } from "react";
 import MoviesService from "../../services/movies";
 import { MoviesArray } from "../../types/movies";
+import { useContext } from "react";
+import { ModalContext } from "../../contexts/ModalContext";
 
 const MovieSection = () => {
+  const context = useContext(ModalContext)
+
+  if (!context) throw new Error('Context problem');
+
+  const { detailModalOpen, selectedShow, setDetailModalOpen, setSelectedShow } = context;
+
   const [movies, setMovies] = useState<MoviesArray>([]);
-  const [selectedShow, setSelectedShow] = useState<number>(0);
-  const [detailModalOpen, setDetailModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
     console.log(selectedShow, detailModalOpen);
@@ -16,11 +22,7 @@ const MovieSection = () => {
   const handleCardClick = (showId: number) => {
     setSelectedShow(showId);
     setDetailModalOpen(true);
-  }
-
-  const handleCloseModal = () => {
-    setDetailModalOpen(false);
-  }
+  };
 
   useEffect(() => {
     try {
