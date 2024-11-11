@@ -15,9 +15,10 @@ export const Overlay = styled.div`
 export const DetailModalStyled = styled.section`
   position: relative;
   background-color: #fff;
-  padding: 20px;
+  padding: 40px;
   border-radius: 8px;
-  max-width: 500px;
+  min-width: 50%;
+  max-width: 70%;
   width: 100%;
 `;
 
