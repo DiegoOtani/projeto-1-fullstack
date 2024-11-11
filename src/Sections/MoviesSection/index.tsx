@@ -6,6 +6,21 @@ import { MoviesArray } from "../../types/movies";
 
 const MovieSection = () => {
   const [movies, setMovies] = useState<MoviesArray>([]);
+  const [selectedShow, setSelectedShow] = useState<number>(0);
+  const [detailModalOpen, setDetailModalOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    console.log(selectedShow, detailModalOpen);
+  }, [selectedShow, detailModalOpen])
+
+  const handleCardClick = (showId: number) => {
+    setSelectedShow(showId);
+    setDetailModalOpen(true);
+  }
+
+  const handleCloseModal = () => {
+    setDetailModalOpen(false);
+  }
 
   useEffect(() => {
     try {
@@ -22,6 +37,8 @@ const MovieSection = () => {
   return <MovieSectionStyled>
     {movies.map(movie => (
       <Card 
+        onClick={handleCardClick}
+        id={movie.id}
         key={movie.id}
         imgUrl={movie.image.original}
         title={movie.name}
