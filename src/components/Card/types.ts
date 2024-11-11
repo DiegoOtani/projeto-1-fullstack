@@ -4,5 +4,5 @@ export type CardProps = {
   title: string
   duration: number
   rating: number | null
-  onClick: (showId: number) => void
+  onClick?: (showId: number) => void
 };
