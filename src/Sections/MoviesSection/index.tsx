@@ -11,13 +11,9 @@ const MovieSection = () => {
 
   if (!context) throw new Error('Context problem');
 
-  const { detailModalOpen, selectedShow, setDetailModalOpen, setSelectedShow } = context;
+  const { setDetailModalOpen, setSelectedShow } = context;
 
   const [movies, setMovies] = useState<MoviesArray>([]);
-
-  useEffect(() => {
-    console.log(selectedShow, detailModalOpen);
-  }, [selectedShow, detailModalOpen])
 
   const handleCardClick = (showId: number) => {
     setSelectedShow(showId);
