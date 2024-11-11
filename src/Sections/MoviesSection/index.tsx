@@ -1,4 +1,4 @@
-import { MovieSectionStyled } from "./styles";
+import { MovieSectionStyled, Shows, PageButtons } from "./styles";
 import Card from "../../components/Card";
 import { useEffect, useState } from "react";
 import MoviesService from "../../services/movies";
@@ -14,6 +14,10 @@ const MovieSection = () => {
   const { setDetailModalOpen, setSelectedShow } = context;
 
   const [movies, setMovies] = useState<MoviesArray>([]);
+
+  const [currentPage, setCurrentPage] = useState<number>(1);
+
+  const showsPerPage = 20;
 
   const handleCardClick = (showId: number) => {
     setSelectedShow(showId);
@@ -32,18 +36,38 @@ const MovieSection = () => {
     }
   }, []);
 
+  const indexOfLastShow = currentPage * showsPerPage;
+  const indexOfFirstShow = indexOfLastShow - showsPerPage;
+
+  const currentShows = movies.slice(indexOfFirstShow, indexOfLastShow);
+
+  const nextPage = () => {
+    setCurrentPage(currentPage + 1);
+  };
+
+  const previousPage = () => {
+    setCurrentPage(currentPage - 1);
+  };
+
   return <MovieSectionStyled>
-    {movies.map(movie => (
-      <Card 
-        onClick={handleCardClick}
-        id={movie.id}
-        key={movie.id}
-        imgUrl={movie.image.original}
-        title={movie.name}
-        duration={movie.runtime}
-        rating={movie.rating.average}
-      />
-    ))}
+    <Shows>
+      {currentShows.map(movie => (
+        <Card 
+          onClick={handleCardClick}
+          id={movie.id}
+          key={movie.id}
+          imgUrl={movie.image.original}
+          title={movie.name}
+          duration={movie.runtime}
+          rating={movie.rating.average}
+        />
+      ))}
+    </Shows>
+
+    <PageButtons>
+      <button onClick={previousPage} disabled={currentPage === 1}>Previous</button>
+      <button onClick={nextPage} disabled={currentPage === Math.ceil(movies.length / showsPerPage)}>Next</button>
+    </PageButtons>
   </MovieSectionStyled>;
 };
 
