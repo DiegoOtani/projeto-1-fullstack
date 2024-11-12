@@ -14,7 +14,7 @@ export const InputFieldSyled = styled.div`
 
 export const SearchButton = styled.button`
   border: none;
-  background-color: white;
+  background-color: rgba(0, 0, 0, 0);
 
   &:hover {
     cursor: pointer;

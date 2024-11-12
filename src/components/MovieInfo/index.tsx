@@ -1,15 +1,15 @@
-import { Star, Clock } from "@phosphor-icons/react";
 import { MovieInfoTypes } from "./types";
 import { MovieInfoStyled } from "./styles";
+import { FaStar, FaRegClock } from "react-icons/fa";
 
 const MovieInfo = ({ rating, duration }: MovieInfoTypes) => {
   return <MovieInfoStyled>
     <span className="rating">
-      <Star />
+      <FaStar />
       {rating}
     </span>
     <span>
-      <Clock />
+      <FaRegClock />
       {duration} minutes
     </span>
   </MovieInfoStyled>

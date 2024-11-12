@@ -1,8 +1,8 @@
 import { InputFieldProps } from "./types"
 import { InputFieldSyled, SearchButton } from "./styles"
-import { MagnifyingGlass } from "@phosphor-icons/react"
 import { useContext, useEffect } from "react"
 import { SearchContext } from "../../contexts/SearchContext"
+import { FaSearch } from "react-icons/fa";
 
 const InputField = ({ onSubmit }: InputFieldProps) => {
   const context = useContext(SearchContext);
@@ -27,7 +27,7 @@ const InputField = ({ onSubmit }: InputFieldProps) => {
       value={search}
     />
     <SearchButton onClick={onSubmit}>
-      <MagnifyingGlass size={20}/>
+      <FaSearch size={20} color="white"/>
     </SearchButton>
   </InputFieldSyled>
 }
