@@ -54,3 +54,8 @@ export type Movies = {
 }
 
 export type MoviesArray = Movies[];
+
+export type MovieResult = {
+  score: number
+  show: Movies
+}
