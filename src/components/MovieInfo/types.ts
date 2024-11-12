@@ -1,4 +1,4 @@
 export type MovieInfoTypes = {
-  rating: number;
+  rating: number | null;
   duration: number;
 };

@@ -1,4 +1,4 @@
-type Movies = {
+export type Movies = {
   id: number;
   url: string;
   name: string;
