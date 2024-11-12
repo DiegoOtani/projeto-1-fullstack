@@ -1,22 +1,21 @@
-import { InputFieldProps } from "./types"
 import { InputFieldSyled, SearchButton } from "./styles"
-import { useContext, useEffect } from "react"
+import { useContext, useState } from "react"
 import { SearchContext } from "../../contexts/SearchContext"
 import { FaSearch } from "react-icons/fa";
 
-const InputField = ({ onSubmit }: InputFieldProps) => {
+const InputField = () => {
   const context = useContext(SearchContext);
 
   if (!context) throw new Error('Context problem');
-
-  const { search, setSearch } = context;
-
-  useEffect(() => {
-    console.log(search)
-  }, [search])
+  const [inputSearch, setInputSearch] = useState<string>("");
+  const { setSearch } = context;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
+    setInputSearch(e.target.value);
+  };
+
+  const handleSubmit = () => {
+    setSearch(inputSearch);
   };
   
   return <InputFieldSyled>
@@ -24,9 +23,9 @@ const InputField = ({ onSubmit }: InputFieldProps) => {
       placeholder="Search Shows..."
       type="text" 
       onChange={handleChange} 
-      value={search}
+      value={inputSearch}
     />
-    <SearchButton onClick={onSubmit}>
+    <SearchButton onClick={handleSubmit}>
       <FaSearch size={20} color="white"/>
     </SearchButton>
   </InputFieldSyled>
