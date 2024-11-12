@@ -60,7 +60,10 @@ const MovieSection = () => {
   };
 
   return <MovieSectionStyled>
-    <h1>{search === "" ? "Tv Shows" : "Top 10 results from search..."}</h1>
+    <h1>{search === "" 
+      ? "Tv Shows" 
+      : currentShows.length > 0 ? `Top 10 results from search ${search}...` : "Shows not found"}
+    </h1>
     <Shows>
       {currentShows.map(movie => (
         <Card 
