@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const MovieSectionStyled = styled.section`
+  width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
