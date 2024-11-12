@@ -5,13 +5,17 @@ import MoviesService from "../../services/movies";
 import { MoviesArray } from "../../types/movies";
 import { useContext } from "react";
 import { ModalContext } from "../../contexts/ModalContext";
+import { SearchContext } from "../../contexts/SearchContext";
 
 const MovieSection = () => {
-  const context = useContext(ModalContext)
+  const modalContext = useContext(ModalContext)
+  const searchContext = useContext(SearchContext);
 
-  if (!context) throw new Error('Context problem');
+  if (!modalContext) throw new Error('Context problem');
+  if (!searchContext) throw new Error('Context problem');
 
-  const { setDetailModalOpen, setSelectedShow } = context;
+  const { setDetailModalOpen, setSelectedShow } = modalContext;
+  const { search } = searchContext;
 
   const [movies, setMovies] = useState<MoviesArray>([]);
 
@@ -27,14 +31,20 @@ const MovieSection = () => {
   useEffect(() => {
     try {
       const loadMovies = async () => {
-        const data = await MoviesService.getMovies();
+        let data;
+        if (search === "") {
+          data = await MoviesService.getMovies();
+        } else {
+          data = await MoviesService.getMoviesBySearch(search);
+          console.log(data)
+        }
         setMovies(data);
       }
       loadMovies();
     } catch (error) {
       console.error(error);
     }
-  }, []);
+  }, [search]);
 
   const indexOfLastShow = currentPage * showsPerPage;
   const indexOfFirstShow = indexOfLastShow - showsPerPage;
@@ -56,18 +66,20 @@ const MovieSection = () => {
           onClick={handleCardClick}
           id={movie.id}
           key={movie.id}
-          imgUrl={movie.image.original}
+          imgUrl={movie.image?.original || movie.image?.medium || 'defaultImageUrl'}
           title={movie.name}
           duration={movie.runtime}
           rating={movie.rating.average}
         />
       ))}
     </Shows>
-
-    <PageButtons>
-      <button onClick={previousPage} disabled={currentPage === 1}>Previous</button>
-      <button onClick={nextPage} disabled={currentPage === Math.ceil(movies.length / showsPerPage)}>Next</button>
-    </PageButtons>
+    
+    {search === "" && (
+      <PageButtons>
+        <button onClick={previousPage} disabled={currentPage === 1}>Previous</button>
+        <button onClick={nextPage} disabled={currentPage === Math.ceil(movies.length / showsPerPage)}>Next</button>
+      </PageButtons>
+    )}
   </MovieSectionStyled>;
 };
 
