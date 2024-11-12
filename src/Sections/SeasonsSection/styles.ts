@@ -12,6 +12,8 @@ export const SeasonSectionStyled = styled.section`
 
 export const SeasonsList = styled.ul`
   width: 100%;
+  padding: 0;
+  margin: 0;
   display: flex;
   justify-content: start;
   align-items: center;
