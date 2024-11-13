@@ -1,10 +1,12 @@
 import styled from "styled-components";
 
 export const MovieSectionStyled = styled.section`
+  min-height: 80vh;
   width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 20px;
 
   h1 {

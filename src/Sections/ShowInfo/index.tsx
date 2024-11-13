@@ -1,4 +1,4 @@
-import { ShowInfo, Info, ColorInfo } from "./styles";
+import { ShowInfo, Info, ColorInfo, Loading } from "./styles";
 import MoviesService from "../../services/movies";
 import { useEffect, useState } from "react";
 import { useContext } from "react";
@@ -26,6 +26,8 @@ const ShowInfoSection = () => {
       console.error(error);
     }
   }, [selectedShow]);
+
+  if(show === undefined) return <Loading><h2>Loading</h2></Loading>
 
   if(!show) return <p>Error to find show.</p>
 

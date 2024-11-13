@@ -18,7 +18,7 @@ const MovieSection = () => {
   const { search } = searchContext;
 
   const [movies, setMovies] = useState<MoviesArray>([]);
-
+  const [loading, setLoading] = useState<boolean>(false);
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   const showsPerPage = 20;
@@ -32,6 +32,7 @@ const MovieSection = () => {
     try {
       const loadMovies = async () => {
         let data;
+        setLoading(true);
         if (search === "") {
           data = await MoviesService.getMovies();
         } else {
@@ -39,6 +40,7 @@ const MovieSection = () => {
           console.log(data)
         }
         setMovies(data);
+        setLoading(false);
       }
       loadMovies();
     } catch (error) {
@@ -60,9 +62,11 @@ const MovieSection = () => {
   };
 
   return <MovieSectionStyled>
-    <h1>{search === "" 
-      ? "Tv Shows" 
-      : currentShows.length > 0 ? `Top 10 results from search ${search}...` : "Shows not found"}
+    <h1>{loading 
+      ? "Loading TvShows" 
+      : search === "" 
+        ? "Tv Shows" 
+        : currentShows.length > 0 ? `Top 10 results from search ${search}...` : "Shows not found"}
     </h1>
     <Shows>
       {currentShows.map(movie => (
@@ -79,7 +83,7 @@ const MovieSection = () => {
       ))}
     </Shows>
     
-    {search === "" && (
+    {search === "" && !loading && (
       <PageButtons>
         <button onClick={previousPage} disabled={currentPage === 1}>Previous</button>
         <button onClick={nextPage} disabled={currentPage === Math.ceil(movies.length / showsPerPage)}>Next</button>

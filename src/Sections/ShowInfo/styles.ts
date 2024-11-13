@@ -22,3 +22,11 @@ export const Info = styled.div`
 export const ColorInfo = styled.span<{ status: boolean }>`
   color: ${(props) => (props.status ? "red" : "green")};
 `;
+
+export const Loading = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 400px;
+`;

@@ -16,7 +16,7 @@ const DetailsModal = ({ onClick }: DetailModalProps) => {
         ? <ShowInfoSection />
         : <SeasonSection />
       }
-    </DetailModalStyled>
+    </DetailModalStyled>  
   </Overlay>
 };
 
