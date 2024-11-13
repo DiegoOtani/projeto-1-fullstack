@@ -7,7 +7,7 @@ const EpisodesList = ({ episodes }: EpisodesListProps) => {
   const [ episodeSelected, setEpisodeSelected ] = useState<number>(0);
 
   return <EpisodesListStyled>
-    <h2>Episodes List</h2>
+    {episodes.length !== 0 && (<h2>Episodes List</h2>)}
     <ul>
       {episodes.map(episode => (
         <ListItem key={episode.id}>

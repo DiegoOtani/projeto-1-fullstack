@@ -13,7 +13,7 @@ const SeasonSection = () => {
 
   const { selectedShow } = context;
   const [ seasons, setSeasons ] = useState<SeasonsArray>([]);
-  const [ selectedSeason, setSelectedSeason ] = useState<number>(1);
+  const [ selectedSeason, setSelectedSeason ] = useState<number>(0);
   const [ episodes, setEpisodes ] = useState<EpisodesArray>([]);
 
   useEffect(() => {
@@ -43,7 +43,7 @@ const SeasonSection = () => {
   }, [selectedSeason])
 
   return <SeasonSectionStyled>
-    <h2>Seasons</h2>
+    <h2>Select Season</h2>
     <nav>
       <SeasonsList>
         {seasons.map(season => (
