@@ -25,6 +25,7 @@ export const CardStyled = styled.div<{ selected: boolean }>`
   img {
     height: 40vh;
     width: 100%;
+    border-radius: 10px;
   }
 
   h2 {

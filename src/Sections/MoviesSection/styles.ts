@@ -5,6 +5,7 @@ export const MovieSectionStyled = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 20px;
 
   h1 {
     font-size: 30px;

@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import { useContext } from 'react';
 import { ModalContext } from './contexts/ModalContext';
 import Header from './components/Header';
+import Footer from './components/Footer';
 
 function App() {
   const context = useContext(ModalContext);
@@ -28,6 +29,7 @@ function App() {
         )
       )}
     </main>
+    <Footer />
   </>
 }
 
