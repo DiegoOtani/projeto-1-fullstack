@@ -19,8 +19,14 @@ export const HeaderStyled = styled.header`
 
   a {
     text-decoration: none;
-    color: white;
-    font-weight: 700;
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 400;
+
+    &:hover {
+      color: rgba(255, 255, 255, 1);
+      text-decoration: underline;
+    }
   }
 
   .logo {

@@ -11,7 +11,7 @@ const EpisodesList = ({ episodes }: EpisodesListProps) => {
     <ul>
       {episodes.map(episode => (
         <ListItem key={episode.id}>
-          <button onClick={() => setEpisodeSelected(episode.id)}>
+          <button onClick={() => setEpisodeSelected(episodeSelected === episode.id ? 0 : episode.id)}>
             <span>{episode.season}X{episode.number}</span>
             {episode.name}
           </button>

@@ -4,7 +4,13 @@ export const SeasonSectionStyled = styled.section`
   display: flex;
   flex-direction: column;
 
+  h2 {
+    padding: 20px;
+    text-align: center;
+  }
+
   nav {
+    padding: 10px;
     display: flex;
     justify-content: start;
   }
@@ -15,7 +21,7 @@ export const SeasonsList = styled.ul`
   padding: 0;
   margin: 0;
   display: flex;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
 `;
 

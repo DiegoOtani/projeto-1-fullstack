@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const InputFieldSyled = styled.div<{ error: boolean }>`
   width: 80%;
   display: flex;
+  gap: 10px;
 
   input {
     width: 100%;

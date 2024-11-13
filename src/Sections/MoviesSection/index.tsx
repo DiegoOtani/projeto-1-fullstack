@@ -67,6 +67,7 @@ const MovieSection = () => {
     <Shows>
       {currentShows.map(movie => (
         <Card 
+          selected={false}
           onClick={handleCardClick}
           id={movie.id}
           key={movie.id}

@@ -1,4 +1,4 @@
-import { Overlay, DetailModalStyled, CloseButton } from "./styles";
+import { Overlay, DetailModalStyled, CloseButton, MenuButtons } from "./styles";
 import { DetailModalProps } from "./types";
 import ShowInfoSection from "../../Sections/ShowInfo";
 import SeasonSection from "../../Sections/SeasonsSection";
@@ -10,8 +10,8 @@ const DetailsModal = ({ onClick }: DetailModalProps) => {
   return <Overlay>
     <DetailModalStyled>
       <CloseButton onClick={onClick}>X</CloseButton>
-      <button onClick={() => setInfo("info")}>Info</button>
-      <button onClick={() => setInfo("seasons")}>Seasons</button>
+      <MenuButtons onClick={() => setInfo("info")}>Info</MenuButtons>
+      <MenuButtons onClick={() => setInfo("seasons")}>Seasons</MenuButtons>
       {info === "info" 
         ? <ShowInfoSection />
         : <SeasonSection />

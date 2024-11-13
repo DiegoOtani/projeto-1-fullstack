@@ -5,6 +5,12 @@ export const MovieSectionStyled = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  h1 {
+    font-size: 30px;
+    font-weight: 700;
+    padding: 20px;
+  }
 `;
 
 export const Shows = styled.div`

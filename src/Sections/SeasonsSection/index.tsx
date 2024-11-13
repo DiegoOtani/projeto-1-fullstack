@@ -43,6 +43,7 @@ const SeasonSection = () => {
   }, [selectedSeason])
 
   return <SeasonSectionStyled>
+    <h2>Seasons</h2>
     <nav>
       <SeasonsList>
         {seasons.map(season => (
