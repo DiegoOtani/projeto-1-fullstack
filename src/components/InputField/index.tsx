@@ -22,7 +22,7 @@ const InputField = () => {
     setInputSearch("");
   };
   
-  return <InputFieldSyled error={errorInputSearch}>
+  return <InputFieldSyled $error={errorInputSearch}>
     <input 
       placeholder={errorInputSearch ? "Please enter a search term..." : "Search Shows..."}
       type="text" 

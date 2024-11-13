@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const InputFieldSyled = styled.div<{ error: boolean }>`
+export const InputFieldSyled = styled.div<{ $error: boolean }>`
   width: 80%;
   display: flex;
   gap: 10px;
@@ -10,8 +10,8 @@ export const InputFieldSyled = styled.div<{ error: boolean }>`
     border-radius: 10px;
     padding: 10px;
     outline: none;
-    border: 2px solid ${(props) => (props.error ? "red" : "#ccc")};
-    background-color: ${(props) => (props.error ? "#fdd" : "#fff")};
+    border: 2px solid ${(props) => (props.$error ? "red" : "#ccc")};
+    background-color: ${(props) => (props.$error ? "#fdd" : "#fff")};
   }
 `;
 
