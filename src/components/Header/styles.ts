@@ -24,6 +24,7 @@ export const HeaderStyled = styled.header`
     font-weight: 400;
 
     &:hover {
+      cursor: pointer;
       color: rgba(255, 255, 255, 1);
       text-decoration: underline;
     }
