@@ -4,6 +4,8 @@ import DetailsModal from './components/DetailsModal'
 import ReactDOM from 'react-dom';
 import { useContext } from 'react';
 import { ModalContext } from './contexts/ModalContext';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 function App() {
   const context = useContext(ModalContext);
@@ -16,15 +18,19 @@ function App() {
     setDetailModalOpen(false);
   }
 
-  return <main>
-    <MovieSection />
-    {detailModalOpen && (
-    ReactDOM.createPortal(
-      <DetailsModal onClick={handleCloseModal}/>,
-      document.getElementById('modal-root') as HTMLElement
-    )
-  )}
-  </main>
+  return <>
+    <Header />
+    <main>
+      <MovieSection />
+      {detailModalOpen && (
+        ReactDOM.createPortal(
+          <DetailsModal onClick={handleCloseModal}/>,
+          document.getElementById('modal-root') as HTMLElement
+        )
+      )}
+    </main>
+    <Footer />
+  </>
 }
 
 export default App

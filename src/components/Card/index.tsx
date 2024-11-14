@@ -2,15 +2,20 @@ import MovieInfo from "../MovieInfo"
 import { CardProps } from "./types"
 import { CardStyled } from "./styles"
 
-const Card = ({ imgUrl, title, duration, rating, onClick, id }: CardProps) => {
+const Card = ({ imgUrl, title, duration, rating, onClick, id, selected }: CardProps) => {
   const handleClick = () => {
     if( onClick) onClick(id);
   }
   
-  return <CardStyled onClick={handleClick}>
+  return <CardStyled 
+    onClick={handleClick}
+    selected={selected}
+  >
     <img src={imgUrl} alt={title} />
-    <h2>{title}</h2>
-    <MovieInfo duration={duration} rating={rating}/>
+    <div>
+      <h2>{title}</h2>
+      <MovieInfo duration={duration} rating={rating}/>
+    </div>
   </CardStyled>
 }
 

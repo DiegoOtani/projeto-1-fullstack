@@ -1,4 +1,4 @@
-import { ShowInfo, Info } from "./styles";
+import { ShowInfo, Info, ColorInfo, Loading } from "./styles";
 import MoviesService from "../../services/movies";
 import { useEffect, useState } from "react";
 import { useContext } from "react";
@@ -27,10 +27,13 @@ const ShowInfoSection = () => {
     }
   }, [selectedShow]);
 
+  if(show === undefined) return <Loading><h2>Loading</h2></Loading>
+
   if(!show) return <p>Error to find show.</p>
 
   return <ShowInfo>
     <Card 
+      selected
       id={show.id}
       key={show.id}
       imgUrl={show.image.original}
@@ -40,9 +43,9 @@ const ShowInfoSection = () => {
     />
     <p className="summary" dangerouslySetInnerHTML={{ __html: show.summary }} />
     <Info>
-      <p>Language: <span>{show.language}</span></p>
+      <p>Language: <ColorInfo status>{show.language}</ColorInfo></p>
       <p>Genres: {show.genres.join(', ')}</p>
-      <p>Status: <span>{show.status}</span></p>
+      <p>Status: <ColorInfo status={show.status === 'Ended'}>{show.status}</ColorInfo></p>
       <p>Producer: <strong>{show.network?.name}</strong></p>
     </Info>
   </ShowInfo>

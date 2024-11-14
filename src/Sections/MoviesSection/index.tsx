@@ -5,16 +5,20 @@ import MoviesService from "../../services/movies";
 import { MoviesArray } from "../../types/movies";
 import { useContext } from "react";
 import { ModalContext } from "../../contexts/ModalContext";
+import { SearchContext } from "../../contexts/SearchContext";
 
 const MovieSection = () => {
-  const context = useContext(ModalContext)
+  const modalContext = useContext(ModalContext)
+  const searchContext = useContext(SearchContext);
 
-  if (!context) throw new Error('Context problem');
+  if (!modalContext) throw new Error('Context problem');
+  if (!searchContext) throw new Error('Context problem');
 
-  const { setDetailModalOpen, setSelectedShow } = context;
+  const { setDetailModalOpen, setSelectedShow } = modalContext;
+  const { search } = searchContext;
 
   const [movies, setMovies] = useState<MoviesArray>([]);
-
+  const [loading, setLoading] = useState<boolean>(false);
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   const showsPerPage = 20;
@@ -27,14 +31,22 @@ const MovieSection = () => {
   useEffect(() => {
     try {
       const loadMovies = async () => {
-        const data = await MoviesService.getMovies();
+        let data;
+        setLoading(true);
+        if (search === "") {
+          data = await MoviesService.getMovies();
+        } else {
+          data = await MoviesService.getMoviesBySearch(search);
+          console.log(data)
+        }
         setMovies(data);
+        setLoading(false);
       }
       loadMovies();
     } catch (error) {
       console.error(error);
     }
-  }, []);
+  }, [search]);
 
   const indexOfLastShow = currentPage * showsPerPage;
   const indexOfFirstShow = indexOfLastShow - showsPerPage;
@@ -50,24 +62,33 @@ const MovieSection = () => {
   };
 
   return <MovieSectionStyled>
+    <h1>{loading 
+      ? "Loading TvShows" 
+      : search === "" 
+        ? "Tv Shows" 
+        : currentShows.length > 0 ? `Top 10 results from search ${search}...` : "Shows not found"}
+    </h1>
     <Shows>
       {currentShows.map(movie => (
         <Card 
+          selected={false}
           onClick={handleCardClick}
           id={movie.id}
           key={movie.id}
-          imgUrl={movie.image.original}
+          imgUrl={movie.image?.original || movie.image?.medium || 'defaultImageUrl'}
           title={movie.name}
           duration={movie.runtime}
           rating={movie.rating.average}
         />
       ))}
     </Shows>
-
-    <PageButtons>
-      <button onClick={previousPage} disabled={currentPage === 1}>Previous</button>
-      <button onClick={nextPage} disabled={currentPage === Math.ceil(movies.length / showsPerPage)}>Next</button>
-    </PageButtons>
+    
+    {search === "" && !loading && (
+      <PageButtons>
+        <button onClick={previousPage} disabled={currentPage === 1}>Previous</button>
+        <button onClick={nextPage} disabled={currentPage === Math.ceil(movies.length / showsPerPage)}>Next</button>
+      </PageButtons>
+    )}
   </MovieSectionStyled>;
 };
 

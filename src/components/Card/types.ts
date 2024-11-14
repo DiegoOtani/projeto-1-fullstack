@@ -5,4 +5,5 @@ export type CardProps = {
   duration: number
   rating: number | null
   onClick?: (showId: number) => void
+  selected: boolean
 };
