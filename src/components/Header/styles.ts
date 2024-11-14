@@ -22,6 +22,7 @@ export const HeaderStyled = styled.header`
     font-size: 20px;
     color: rgba(255, 255, 255, 0.8);
     font-weight: 400;
+    white-space: nowrap;
 
     &:hover {
       cursor: pointer;

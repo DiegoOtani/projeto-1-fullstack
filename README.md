@@ -1,6 +1,9 @@
 # Projeto de Consumo da API TV Maze
 
-Este projeto em React e TypeScript consome a API pública do TVMaze para exibir informações sobre séries de TV e seus detalhes, como temporadas e episódios.
+Este projeto em React e TypeScript foi feito para a disciplina de Desenvolvimento Web FullStack e consome a API pública do TVMaze para exibir informações sobre séries de TV e seus detalhes, como temporadas e episódios.
+
+## Demonstração
+Veja o projeto em funcionamento [aqui](https://projeto-1-fullstack.vercel.app/).
 
 ## Tela Inicial
 ![Home Page](docs/home.png)
