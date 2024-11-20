@@ -12,7 +12,7 @@ const Footer = () => {
       </ul>
     </div>
     <div>
-      <h3>Make for Diego Otani</h3>
+      <h3>Make by Diego Otani</h3>
       <ul>
         <li><a href="https://github.com/DiegoOtani/projeto-1-fullstack" target="blank">About</a></li>
         <li><a href="https://www.linkedin.com/in/diego-otani-361254277/" target="blank">Contact</a></li>
